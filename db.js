@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-console.log("connected to database");
-mongoose.connect("mongodb+srv://rakeshcodes2005:rakeshjha9958@cluster0.pdmd0.mongodb.net/")
 const ObjectId = mongoose.Schema.ObjectId;
 const user = require("./Routes/user");
 

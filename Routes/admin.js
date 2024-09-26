@@ -1,5 +1,26 @@
 const { Router } = require("express");
+const user = require("./user");
 const adminRouter = Router();
+
+
+
+adminRouter.post("/signup", function(req, res, next) {
+    const username = req.body.username;
+    const password = req.body.password;
+  
+    if (username === "expectedUsername" && password === "expectedPassword") {  // Replace with actual expected values
+      res.json({
+        message: "You have successfully created your account"
+      });
+  
+      next();
+    } else {
+      res.json({
+        message: "Invalid credentials"
+      });
+    }
+  });
+  
 
 adminRouter.post("/signup", function(req, res){
     res.json({

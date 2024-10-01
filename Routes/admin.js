@@ -22,11 +22,11 @@ adminRouter.post("/signup", function(req, res, next) {
   });
   
 
-adminRouter.post("/signup", function(req, res){
+adminRouter.post("/signup", function(req, res){ 
     res.json({
         message: "signup Endpoint"
     })
-});
+}); 
 
 adminRouter.post("/signin", function(req, res){
     res.json({

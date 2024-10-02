@@ -1,7 +1,7 @@
 const {Router} = require("express");
 const { userModel } = require("../db");
 const userRouter = Router();
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 const JWT_SECRET = "rakeshlovescharu";
 
 
@@ -30,7 +30,7 @@ userRouter.post("/signin", async function(req, res){
     });
 
     if(user){
-        const token = jwt_sign({
+        const token = jwt.sign({
             id: user._id
         }, JWT_SECRET);
 
@@ -50,14 +50,6 @@ userRouter.post("/signin", async function(req, res){
 //         message: "purchase endpoint"
 //     })
 // });
-// // Find a user by their ID
-// // userModel.findById(userId)
-// //   .then(user => {
-// //     console.log(user);
-// //   })
-// //   .catch(err => {
-// //     console.error(err);
-// //   });
 
 
 // userModel.get("/course", function(req, res){

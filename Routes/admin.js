@@ -1,12 +1,14 @@
 const { Router } = require("express");
 const adminRouter = Router();
-const { adminModel } = require("../db");
-
-const JWT_SECRET = "rakeshlovescharu";
+const { adminModel, courseModel } = require("../db");
+const jwt = require("jsonwebtoken")
+const user_id = "123456789";
+const { JWT_ADMIN_PASS} = require("../config");
 
 
 adminRouter.post("/signup", async function(req, res) {
     const {email, password, firstName, lastname} = req.body;
+
 
     await adminModel.create({
         email: email,
@@ -34,7 +36,7 @@ adminRouter.post("/signin", async function(req, res){
     if(admin){
         const token = jwt.sign({
             id: user_id
-        }, JWT_SECRET)
+        }, JWT_ADMIN_PASS)
 
         res.json({
             token: token 
@@ -47,30 +49,27 @@ adminRouter.post("/signin", async function(req, res){
 
 });
 
-adminRouter.post("/signin", function(req, res){
-    res.json({
-        message: "signin endpoint"
-    })
-});
+adminRouter.post("/coursecreation", adminMiddlefunction, async function(req, res){
+    const adminID = req.user_id;
 
-adminRouter.post("/course", function(req, res){
-    res.json({
-        message: "Course creation endpoint"
-    })
-});
+    const { titleitle, description, imageURL, price } = req.body;
 
-adminRouter.put("/course", function(req, res){
-    res.json({
-        message: "signup endpoint"
-    })
-});
+     const course = await courseModel.create({
+        title: title,
+        description: description,
+        imageURL: imageURL,
+        price: price,
+        creatorId: adminID
+    });
 
-adminRouter.get("/course/bulk", function(req, res){
     res.json({
-        message: "signup endpoint"
-    })
-});
+        message: "course created Succesfully",
+        course: course._id
+        
+    });
 
+
+});
 
 module.exports = {
     adminRouter: adminRouter

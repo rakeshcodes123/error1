@@ -4,6 +4,7 @@ const { adminModel, courseModel } = require("../db");
 const jwt = require("jsonwebtoken")
 const user_id = "123456789";
 const { JWT_ADMIN_PASS} = require("../config");
+const { adminMiddleware } = require("../middleware/admin");
 
 
 adminRouter.post("/signup", async function(req, res) {
@@ -49,7 +50,7 @@ adminRouter.post("/signin", async function(req, res){
 
 });
 
-adminRouter.post("/coursecreation", adminMiddlefunction, async function(req, res){
+adminRouter.post("/coursecreation", adminMiddleware,  async function(req, res){
     const adminID = req.user_id;
 
     const { titleitle, description, imageURL, price } = req.body;

@@ -17,7 +17,6 @@ app.use("/api/v1/course", courseRouter);
 
 async function main(){
   await mongoose.connect(process.env.MONGO_URL);
-  console.log("listening on the port 3000");
 }
 
 main().catch(err => console.log(err));

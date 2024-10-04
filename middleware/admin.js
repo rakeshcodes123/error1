@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
-const JWT_ADMIN_PASS = require("../config");
+import JWT_ADMIN_PASS from "../config";
 
 function adminMiddleware(req, res, next){
     const token = req.headers.token;
-    const decodedData = jwt.verify(token, )
+    const decodedData = verify(token, JWT_ADMIN_PASS)
 
     if(decodedData){
         req.userID = decodedData.id;
@@ -17,4 +17,4 @@ function adminMiddleware(req, res, next){
 
 module.exports = {
     adminMiddleware: adminMiddleware
-};
+}
